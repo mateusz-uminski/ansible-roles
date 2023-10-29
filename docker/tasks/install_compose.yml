@@ -1,0 +1,14 @@
+---
+- name: download docker compose binary
+  ansible.builtin.get_url:
+    url: "{{ docker_compose.binary_url }}"
+    dest: "/usr/local/bin/docker-compose"
+  become: true
+
+- name: apply executable permissions to the binary
+  ansible.builtin.file:
+    path: "/usr/local/bin/docker-compose"
+    owner: root
+    group: root
+    mode: "0755"
+  become: true

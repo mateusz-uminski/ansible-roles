@@ -1,0 +1,21 @@
+---
+- name:
+  ansible.builtin.debug:
+    msg: "{{ ansible_os_family }}"
+
+- name: install docker on redhat
+  ansible.builtin.include_tasks: setup_redhat.yml
+  when: ansible_os_family == "RedHat"
+
+- name: install docker on ubuntu
+  ansible.builtin.include_tasks: setup_debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: setup docker
+  ansible.builtin.include_tasks: setup_docker.yml
+
+- name: install docker compose
+  ansible.builtin.include_tasks: install_compose.yml
+
+- name: force all notified handlers to run
+  ansible.builtin.meta: flush_handlers

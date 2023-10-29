@@ -1,0 +1,18 @@
+---
+- name: add repository
+  ansible.builtin.yum_repository:
+    name: docker-ce-stable
+    description: "docker-ce stable repository"
+    baseurl: "{{ docker_repo.redhat.url }}"
+    gpgkey: "{{ docker_repo.redhat.gpg_key }}"
+    gpgcheck: true
+  become: true
+
+- name: install docker engine
+  ansible.builtin.yum:
+    name:
+      - "docker-ce"
+      - "docker-ce-cli"
+      - "containerd.io"
+    state: present
+  become: true

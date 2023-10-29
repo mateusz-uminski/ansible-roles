@@ -1,0 +1,22 @@
+---
+- name: add repostiory gpg key
+  ansible.builtin.apt_key:
+    url: "{{ docker_repo.debian.gpg_key }}"
+    state: present
+  become: true
+
+- name: add repository
+  ansible.builtin.apt_repository:
+    repo: "{{ docker_repo.debian.url }}"
+    state: present
+    update_cache: true
+  become: true
+
+- name: install docker engine
+  ansible.builtin.apt:
+    name:
+      - "docker-ce={{ docker_version.debian }}"
+      - "docker-ce-cli={{ docker_version.debian }}"
+      - "containerd.io"
+    state: present
+  become: true

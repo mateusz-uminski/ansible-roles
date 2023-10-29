@@ -1,0 +1,26 @@
+---
+# - name: configure docker daemon options
+#   block:
+#     - name: create /etc/docker directory
+#       ansible.builtin.file:
+#         path: /etc/docker
+#         state: directory
+#         mode: 0755
+
+#     - name: parse docker daemon options to file
+#       ansible.builtin.copy:
+#         content: "{{ docker_daemon.options | to_nice_json }}"
+#         dest: /etc/docker/daemon.json
+#         mode: 0644
+#   become: true
+#   when: docker_daemon.options.keys() | length > 0
+#   notify:
+#     - reload daemon
+#     - restart docker
+
+- name: ensure docker is started and enabled
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true
+  become: true

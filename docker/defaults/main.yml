@@ -1,0 +1,23 @@
+---
+docker_repo:
+  redhat:
+    url: "https://download.docker.com/linux/centos/8/$basearch/stable"
+    gpg_key: "https://download.docker.com/linux/centos/gpg"
+  debian:
+    url: >-
+      deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+    gpg_key: "https://download.docker.com/linux/ubuntu/gpg"
+
+docker_version:
+  redhat: "20.10.9"
+  debian: "5:20.10.9~3-0~ubuntu-bionic"
+
+docker_daemon:
+  # options:
+    # storage-driver: "overlay2"
+
+docker_compose_version: "1.29.2"
+
+docker_compose:
+  binary_url: "https://github.com/docker/compose/releases/download/\
+  {{ docker_compose_version }}/docker-compose-Linux-x86_64"

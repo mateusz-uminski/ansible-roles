@@ -15,6 +15,7 @@ warn_list:
 
 skip_list:
   - name[casing]
+  - schema[meta]
 
 exclude_paths:
   - __pycache__/

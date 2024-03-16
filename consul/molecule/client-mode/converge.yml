@@ -1,0 +1,10 @@
+- name: converge
+  hosts: clients
+  gather_facts: true
+  vars:
+    consul_server_mode: false
+    consul_servers: ["server:8301"]
+  tasks:
+    - name: import ansible role
+      ansible.builtin.import_role:
+        name: consul

@@ -45,6 +45,7 @@ jobs:
         role:
           - name: docker
           - name: haproxy
+          - name: consul-server
     name: "${{ matrix.role.name }}: ${{ matrix.platform.name }}(${{ matrix.runner.arch }})"
     uses: mateusz-uminski/github-actions/.github/workflows/molecule-tests.yaml@main
     with:
